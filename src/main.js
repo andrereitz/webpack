@@ -1,7 +1,7 @@
 require('@babel/runtime/regenerator');
 require('./main.css');
-require('./images/test.jpg')
-// require('./index.html');
+// require('./images/test.jpg')
+require('./index.html');
 
 var a = async (args) => {
     const {a, b, c} = args;
