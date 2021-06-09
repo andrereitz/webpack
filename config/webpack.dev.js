@@ -11,8 +11,11 @@ module.exports = {
         publicPath: "/"
     },
     devServer: {
-        contentBase: 'dist',
-        overlay: true
+        // contentBase: 'dist',
+        // overlay: true,
+        stats: {
+            colors: true
+        }
     },
     module: {
         rules: [

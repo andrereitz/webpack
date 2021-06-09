@@ -1,9 +1,12 @@
 {
+    // "plugins": [
+    //     "transform-es2015-arrow-functions",
+    //     "async-to-promises"
+    // ]
     "presets": [
         [
-            "@babel/preset-env",
+            "env",
             {
-                "useBuiltIns": "entry",
                 "targets": {
                     "browsers": ["last 2 versions"]
                 },
