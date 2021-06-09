@@ -8,7 +8,7 @@
     "build": "webpack --config=config/webpack.dev.js",
     "babel": "babel",
     "babel-version": "babel --version",
-    "dev": "nodemon --watch config --watch src/server src/server/main.js"
+    "dev": "nodemon --inspect --watch config --watch src/server src/server/main.js"
   },
   "keywords": [],
   "author": "",
