@@ -1,0 +1,1 @@
+npm install --save @angular/core @angular/common @angular/compiler @angular/platform-browser @angular/platform-browser-dynamic @angular/http @angular/router @angular/forms rx.js core-js reflet-metadata zone.js
