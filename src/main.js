@@ -1,5 +1,5 @@
 require('@babel/runtime/regenerator');
-require('./main.css');
+require('./main.styl');
 // require('./images/test.jpg')
 require('./index.html');
 
@@ -8,5 +8,5 @@ var a = async (args) => {
     await console.log('Hello from the future');
     console.log('this will be converted', a, b, c)
 }
-debugger
+
 a({a: 1, b: 2, c:'three'});
