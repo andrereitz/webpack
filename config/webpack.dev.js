@@ -58,13 +58,33 @@ module.exports = {
             loader: "html-loader"
           }
         ]
-      }
+      },
+      {
+          test: /\.pug$/,
+          use: [
+              {
+                  loader: 'pug-loader'
+              }
+          ]
+      },
+      {
+        test: /\.hbs$/,
+        use: [
+            {
+                loader: '@icetee/handlebars-loader',
+                query: {
+                    inlineRequires: "/images/"
+                }
+            }
+        ]
+    }
     ]
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
     new HTMLWebpackPlugin({
-      template: "./src/index.html"
+      template: "./src/index.hbs",
+      title: 'Link\'s Journal'
     })
   ]
 }

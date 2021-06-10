@@ -1,10 +1,94 @@
-<html>
-  <head>
-  </head>
-  <body>
-    <div class="profile">
-      <img src="/images/link.jpg" alt="">
-      <h1>Link's Journal</h1>
-    </div>
-  <script type="text/javascript" src="/main-bundle.js"></script></body>
-</html>
+Html Webpack Plugin:
+<pre>
+  Error: Child compilation failed:
+  Module build failed: Error: Parse error on line 7:
+  ...mg src="{{         require("images/link
+  ----------------------^
+  Expecting 'ID', 'STRING', 'NUMBER', 'BOOLEAN', 'UNDEFINED', 'NULL', 'DATA', got 'INVALID'
+  
+  - parser.js:268 Parser.parseError
+    [webpack-course-rtz]/[handlebars]/dist/cjs/handlebars/compiler/parser.js:268:19
+  
+  - parser.js:337 Parser.parse
+    [webpack-course-rtz]/[handlebars]/dist/cjs/handlebars/compiler/parser.js:337:30
+  
+  - base.js:46 HandlebarsEnvironment.parse
+    [webpack-course-rtz]/[handlebars]/dist/cjs/handlebars/compiler/base.js:46:43
+  
+  - index.js:205 compile
+    [webpack-course-rtz]/[@icetee]/handlebars-loader/index.js:205:18
+  
+  
+  - Error: Parse error on line 7:
+  
+  - ...mg src="{{         require("images/link
+  
+  - ----------------------^
+  
+  - Expecting 'ID', 'STRING', 'NUMBER', 'BOOLEAN', 'UNDEFINED', 'NULL', 'DATA', got 'INVALID'
+  
+  - compiler.js:79 
+    [webpack-course-rtz]/[html-webpack-plugin]/lib/compiler.js:79:16
+  
+  - Compiler.js:242 
+    [webpack-course-rtz]/[webpack]/lib/Compiler.js:242:11
+  
+  - Compiler.js:487 
+    [webpack-course-rtz]/[webpack]/lib/Compiler.js:487:14
+  
+  
+  - Hook.js:35 AsyncSeriesHook.lazyCompileHook [as _callAsync]
+    [webpack-course-rtz]/[tapable]/lib/Hook.js:35:21
+  
+  - Compiler.js:484 
+    [webpack-course-rtz]/[webpack]/lib/Compiler.js:484:30
+  
+  
+  - Hook.js:35 AsyncSeriesHook.lazyCompileHook [as _callAsync]
+    [webpack-course-rtz]/[tapable]/lib/Hook.js:35:21
+  
+  - Compilation.js:966 
+    [webpack-course-rtz]/[webpack]/lib/Compilation.js:966:35
+  
+  
+  - Hook.js:35 AsyncSeriesHook.lazyCompileHook [as _callAsync]
+    [webpack-course-rtz]/[tapable]/lib/Hook.js:35:21
+  
+  - Compilation.js:957 
+    [webpack-course-rtz]/[webpack]/lib/Compilation.js:957:32
+  
+  
+  - Hook.js:35 AsyncSeriesHook.lazyCompileHook [as _callAsync]
+    [webpack-course-rtz]/[tapable]/lib/Hook.js:35:21
+  
+  - Compilation.js:952 
+    [webpack-course-rtz]/[webpack]/lib/Compilation.js:952:36
+  
+  
+  - Hook.js:35 AsyncSeriesHook.lazyCompileHook [as _callAsync]
+    [webpack-course-rtz]/[tapable]/lib/Hook.js:35:21
+  
+  - Compilation.js:948 
+    [webpack-course-rtz]/[webpack]/lib/Compilation.js:948:32
+  
+  
+  - Hook.js:35 AsyncSeriesHook.lazyCompileHook [as _callAsync]
+    [webpack-course-rtz]/[tapable]/lib/Hook.js:35:21
+  
+  - Compilation.js:890 Compilation.seal
+    [webpack-course-rtz]/[webpack]/lib/Compilation.js:890:27
+  
+  - Compiler.js:481 
+    [webpack-course-rtz]/[webpack]/lib/Compiler.js:481:17
+  
+  
+  - Compilation.js:758 
+    [webpack-course-rtz]/[webpack]/lib/Compilation.js:758:12
+  
+  - Compilation.js:697 
+    [webpack-course-rtz]/[webpack]/lib/Compilation.js:697:9
+  
+  - task_queues.js:75 processTicksAndRejections
+    internal/process/task_queues.js:75:11
+  
+</pre><script type="text/javascript" src="/main-bundle.js"></script>
