@@ -1,5 +1,8 @@
 require("babel-runtime/regenerator")
+require("react-hot-loader/patch")
 require("webpack-hot-middleware/client?reload=true")
+require('babel-register')
 require("./main.css")
 require("./images/link.jpg")
 require("./index.html")
+require('./app')
