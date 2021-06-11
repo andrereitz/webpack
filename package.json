@@ -31,5 +31,10 @@
     "start": "webpack-dev-server --config=config/webpack.dev.js",
     "build": "webpack --config=config/webpack.dev.js",
     "dev": "nodemon --inspect --watch config --watch src/server src/server/main.js"
+  },
+  "devDependencies": {
+    "@types/core-js": "0.9.44",
+    "@types/node": "8.5.7",
+    "nodemon": "2.0.7"
   }
 }
