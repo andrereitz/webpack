@@ -1,3 +1,3 @@
-import "core-js/es6"
+import 'core-js/es/array'
 import "reflect-metadata"
 import "zone.js/dist/zone"
