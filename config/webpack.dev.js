@@ -1,7 +1,7 @@
 const path = require("path")
 const webpack = require("webpack")
 const HTMLWebpackPlugin = require("html-webpack-plugin")
-const {VueLoaderPlugin} = require('vue-loader')
+const isProd = process.env.NODE_ENV === "production"
 
 module.exports = {
   entry: {
@@ -20,22 +20,8 @@ module.exports = {
       colors: true
     }
   },
-  devtool: "source-map",
-  resolve: {
-    alias: {
-      vue$: 'vue/dist/vue.esm.js'
-    }
-  },
   module: {
     rules: [
-      {
-        test: /\.vue$/,
-        use: [
-          {
-            loader: 'vue-loader'
-          }
-        ]
-      },
       {
         test: /\.js$/,
         exclude: /node_modules/,
@@ -51,7 +37,9 @@ module.exports = {
           {
             loader: "style-loader"
           },
-          { loader: "css-loader" }
+          {
+            loader: "css-loader"
+          }
         ]
       },
       {
@@ -76,10 +64,11 @@ module.exports = {
     ]
   },
   plugins: [
-    new VueLoaderPlugin(),
-    new webpack.HotModuleReplacementPlugin(),
+    // new webpack.HotModuleReplacementPlugin(),
     new HTMLWebpackPlugin({
-      template: "./src/index.html"
+      template: "./src/index.ejs",
+      inject: true,
+      title: "Link's Journal"
     })
   ]
 }
