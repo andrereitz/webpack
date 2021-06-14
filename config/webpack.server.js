@@ -1,35 +1,19 @@
 const path = require("path")
 const webpack = require("webpack")
-const MiniCSSExtractPlugin = require('')
-const nodeExternals = require('webpack-node-externals')
+const ExtractTextPlugin = require("extract-text-webpack-plugin")
+var nodeExternals = require("webpack-node-externals")
 
 module.exports = env => {
   return {
+    target: "node",
+    externals: nodeExternals(),
     entry: {
       server: ["./src/server/main.js"]
     },
-    mode: "production",
+    mode: "development",
     output: {
       filename: "[name]-bundle.js",
-      path: path.resolve(__dirname, "../build"),
-    },
-    target: 'node',
-    externals: nodeExternals(),
-    optimization: {
-      runtimeChunk: {
-        name: "bootstrap"
-      },
-      splitChunks: {
-        chunks: "all", // <-- The key to this
-        automaticNameDelimiter: "-",
-        cacheGroups: {
-          vendor: {
-            name: "vendor",
-            chunks: "all",
-            minChunks: Infinity
-          }
-        }
-      }
+      path: path.resolve(__dirname, "../build")
     },
     module: {
       rules: [
@@ -44,7 +28,15 @@ module.exports = env => {
         },
         {
           test: /\.css$/,
-          use: [MiniCSSExtractPlugin.loader, "css-loader"]
+          use: ExtractTextPlugin.extract({
+            fallback: "style-loader",
+            use: {
+              loader: "css-loader",
+              options: {
+                minimize: true
+              }
+            }
+          })
         },
         {
           test: /\.jpg$/,
@@ -69,13 +61,7 @@ module.exports = env => {
       ]
     },
     plugins: [
-      new MiniCSSExtractPlugin(),
-      new OptimizeCssAssetsPlugin({
-        assetNameRegExp: /\.css$/g,
-        cssProcessor: require("cssnano"),
-        cssProcessorOptions: { discardComments: { removeAll: true } },
-        canPrint: true
-      }),
+      new ExtractTextPlugin("[name].css"),
       new webpack.DefinePlugin({
         "process.env": {
           NODE_ENV: JSON.stringify(env.NODE_ENV)

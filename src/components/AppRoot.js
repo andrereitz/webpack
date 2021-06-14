@@ -1,5 +1,6 @@
 import React from "react"
-// import MarkdownData from "../../data/post.md"
+const MarkdownData = require("../../data/post.md")
+const imagePath = require("../images/link.jpg")
 
 export default class extends React.Component {
   constructor(props) {
@@ -10,11 +11,11 @@ export default class extends React.Component {
   render() {
     return (
       <div className="profile">
-        <img src={''} />
-        <h1>{'Title'}</h1>
+        <img src={imagePath} />
+        <h1>{MarkdownData.title}</h1>
         <div
           className="content"
-          dangerouslySetInnerHTML={{ __html: '<h1>Heading </h1>' }}
+          dangerouslySetInnerHTML={{ __html: MarkdownData.__content }}
         />
       </div>
     )

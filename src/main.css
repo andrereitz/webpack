@@ -4,10 +4,6 @@ body {
   font-family: Helvetica;
 }
 
-* {
-  box-sizing: border-box;
-}
-
 .profile {
   display: flex;
   -ms-align-items: center;
@@ -29,11 +25,5 @@ body {
   font-family: sans-serif;
   color: white;
   text-shadow: 0 0 20px black;
-  text-align: center;
-}
-
-.content {
-  background-color: #fff;
-  border-radius: 20px;
-  padding: 20px;
+  text-align: left;
 }

@@ -1,5 +1,6 @@
 const path = require("path")
 const webpack = require("webpack")
+const ExtractTextPlugin = require("extract-text-webpack-plugin")
 const HTMLWebpackPlugin = require("html-webpack-plugin")
 const OptimizeCssAssetsPlugin = require("optimize-css-assets-webpack-plugin")
 const UglifyJSPlugin = require("uglifyjs-webpack-plugin")
@@ -20,17 +21,14 @@ module.exports = env => {
       publicPath: "/"
     },
     optimization: {
-      runtimeChunk: {
-        name: "bootstrap"
-      },
       splitChunks: {
-        chunks: "all", // <-- The key to this
-        automaticNameDelimiter: "-",
+        automaticNameDelimiter: "_",
         cacheGroups: {
           vendor: {
             name: "vendor",
-            chunks: "all",
-            minChunks: Infinity
+            test: /[\\/]node_modules[\\/]/,
+            chunks: "initial",
+            minChunks: 2
           }
         }
       }
@@ -84,11 +82,13 @@ module.exports = env => {
           NODE_ENV: JSON.stringify(env.NODE_ENV)
         }
       }),
-      // new HTMLWebpackPlugin({
-      //   template: "./src/index.ejs",
-      //   inject: true,
-      //   title: "Link's Journal"
-      // }),
+      new HTMLWebpackPlugin({
+        template: "./src/index.ejs",
+        filename: "index.html",
+        inject: true,
+        title: "Link's Journal",
+        chunks: ["vendor", "main"]
+      }),
       new UglifyJSPlugin(),
       new CompressionPlugin({
         algorithm: "gzip"

@@ -1,8 +1,6 @@
 const path = require("path")
 const webpack = require("webpack")
 const HTMLWebpackPlugin = require("html-webpack-plugin")
-const BundleAnalyzerPlugin = require("webpack-bundle-analyzer")
-  .BundleAnalyzerPlugin
 
 module.exports = {
   entry: {
@@ -10,7 +8,6 @@ module.exports = {
     main: [
       "react-hot-loader/patch",
       "babel-runtime/regenerator",
-      "babel-register",
       "webpack-hot-middleware/client?reload=true",
       "./src/main.js"
     ]
@@ -61,6 +58,24 @@ module.exports = {
         ]
       },
       {
+        test: /\.html$/,
+        use: [
+          {
+            loader: "file-loader",
+            options: {
+              name: "[name].[ext]"
+            }
+          },
+          { loader: "extract-loader" },
+          {
+            loader: "html-loader",
+            options: {
+              attrs: ["img:src"]
+            }
+          }
+        ]
+      },
+      {
         test: /\.md$/,
         use: [
           {
@@ -71,19 +86,17 @@ module.exports = {
     ]
   },
   plugins: [
-    new webpack.HotModuleReplacementPlugin(),
     new webpack.DefinePlugin({
       "process.env": {
-        NODE_ENV: JSON.stringify("development")
+        NODE_ENV: JSON.stringify("development"),
+        WEBPACK: true
       }
     }),
-    // new HTMLWebpackPlugin({
-    //   template: "./src/index.ejs",
-    //   inject: true,
-    //   title: "Link's Journal"
-    // }),
-    new BundleAnalyzerPlugin({
-      generateStatsFile: true
+    new webpack.HotModuleReplacementPlugin(), // Enable HMR
+    new HTMLWebpackPlugin({
+      template: "./src/index.ejs",
+      inject: true,
+      title: "Link's Journal"
     })
   ]
 }
