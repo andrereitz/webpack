@@ -1,20 +1,17 @@
 const path = require("path")
 const webpack = require("webpack")
-const ExtractTextPlugin = require("extract-text-webpack-plugin")
 var nodeExternals = require("webpack-node-externals")
 
-module.exports = env => {
-  return {
+module.exports = {
     name: "server",
     target: "node",
     externals: nodeExternals(),
-    entry: {
-      server: ["./src/server/main.js"]
-    },
-    mode: "development",
+    entry: "./src/server/render.js",
+    mode: "production",
     output: {
-      filename: "[name]-bundle.js",
-      path: path.resolve(__dirname, "../build")
+      filename: "prod-server-bundle.js",
+      path: path.resolve(__dirname, "../build"),
+      libraryTarget: 'commonjs2'
     },
     module: {
       rules: [
@@ -29,15 +26,7 @@ module.exports = env => {
         },
         {
           test: /\.css$/,
-          use: ExtractTextPlugin.extract({
-            fallback: "style-loader",
-            use: {
-              loader: "css-loader",
-              options: {
-                minimize: true
-              }
-            }
-          })
+          use: "css-loader"
         },
         {
           test: /\.jpg$/,
@@ -62,12 +51,10 @@ module.exports = env => {
       ]
     },
     plugins: [
-      new ExtractTextPlugin("[name].css"),
       new webpack.DefinePlugin({
         "process.env": {
-          NODE_ENV: JSON.stringify(env.NODE_ENV)
+          NODE_ENV: JSON.stringify('production')
         }
       })
     ]
-  }
 }
