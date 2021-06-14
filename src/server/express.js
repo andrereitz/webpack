@@ -3,7 +3,7 @@ const server = express()
 import path from "path"
 const expressStaticGzip = require("express-static-gzip")
 import webpack from "webpack"
-import webpackHotServerMiddleware from 'webpack-hot-server-middleware';
+import webpackHotServerMiddleware from "webpack-hot-server-middleware"
 
 import configDevClient from "../../config/webpack.dev-client.js"
 import configDevServer from "../../config/webpack.dev-server.js"
@@ -31,9 +31,7 @@ if (isDev) {
   server.use(webpackDevMiddleware)
   server.use(webpackHotMiddlware)
   server.use(webpackHotServerMiddleware(compiler))
-
   console.log("Middleware enabled")
-
 } else {
   webpack([configProdClient, configProdServer]).run((err, stats) => {
     const render = require("../../build/prod-server-bundle.js").default

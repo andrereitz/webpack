@@ -11,7 +11,7 @@ module.exports = {
   output: {
     filename: "dev-server-bundle.js",
     path: path.resolve(__dirname, "../build"),
-    libraryTarget: 'commonjs2'
+    libraryTarget: "commonjs2"
   },
   module: {
     rules: [
