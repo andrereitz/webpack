@@ -1,16 +1,14 @@
 const path = require("path")
 const webpack = require("webpack")
+const MiniCSSExtractPlugin = require("mini-css-extract-plugin")
 const HTMLWebpackPlugin = require("html-webpack-plugin")
-const MiniCSSExtractPlugin = require('mini-css-extract-plugin')
-const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin')
-const isProd = process.env.NODE_ENV === "production"
-const MinifyPlugin = require('babel-minify-webpack-plugin')
-const UglifyJsPlugin = require("uglifyjs-webpack-plugin")
-const CompressionPlugin = require('compression-webpack-plugin');
-const BrotlyPlugin = require('brotli-webpack-plugin');
+const OptimizeCssAssetsPlugin = require("optimize-css-assets-webpack-plugin")
+const UglifyJSPlugin = require("uglifyjs-webpack-plugin")
+const CompressionPlugin = require("compression-webpack-plugin")
+const BrotliPlugin = require("brotli-webpack-plugin")
 
 module.exports = env => {
-  return{
+  return {
     entry: {
       main: ["./src/main.js"]
     },
@@ -34,11 +32,12 @@ module.exports = env => {
         {
           test: /\.css$/,
           use: [
+            { loader: MiniCSSExtractPlugin.loader },
             {
-              loader: MiniCSSExtractPlugin.loader
-            },
-            {
-              loader: "css-loader"
+              loader: "css-loader",
+              options: {
+                minimize: true
+              }
             }
           ]
         },
@@ -52,38 +51,32 @@ module.exports = env => {
               }
             }
           ]
-        },
-        {
-          test: /\.html$/,
-          use: [
-            {
-              loader: "html-loader"
-            }
-          ]
         }
       ]
     },
     plugins: [
-      new OptimizeCssAssetsPlugin(),
-      new MiniCSSExtractPlugin({
-        filename: '[name]-[contentHash].css'
+      new MiniCSSExtractPlugin(),
+      new OptimizeCssAssetsPlugin({
+        assetNameRegExp: /\.css$/g,
+        cssProcessor: require("cssnano"),
+        cssProcessorOptions: { discardComments: { removeAll: true } },
+        canPrint: true
+      }),
+      new webpack.DefinePlugin({
+        "process.env": {
+          NODE_ENV: JSON.stringify(env.NODE_ENV)
+        }
       }),
       new HTMLWebpackPlugin({
         template: "./src/index.ejs",
         inject: true,
         title: "Link's Journal"
       }),
-      new webpack.DefinePlugin({
-          'process.env': {
-            'NODE_ENV': JSON.stringify(env.NODE_ENV)
-          }
-      }),
-      // new MiniCSSExtractPlugin()
-      new UglifyJsPlugin(),
+      new UglifyJSPlugin(),
       new CompressionPlugin({
-        algorithm: 'gzip'
+        algorithm: "gzip"
       }),
-      new BrotlyPlugin()
+      new BrotliPlugin()
     ]
   }
 }
