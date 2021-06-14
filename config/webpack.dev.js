@@ -1,10 +1,13 @@
 const path = require("path")
 const webpack = require("webpack")
 const HTMLWebpackPlugin = require("html-webpack-plugin")
+const BundleAnalyserPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
+const { initial } = require("lodash")
 
 module.exports = {
   entry: {
-    main: ["./src/main.js"]
+    main: ["./src/main.js"],
+    other: ["./src/main.js"]
   },
   mode: "development",
   output: {
@@ -17,6 +20,18 @@ module.exports = {
     overlay: true,
     stats: {
       colors: true
+    }
+  },
+  optimization: {
+    splitChunks: {
+      chunks: "all",
+      cacheGroups: {
+        vendor: {
+          name: "vendor",
+          chunks: "initial",
+          minChunks: 2
+        }
+      }
     }
   },
   devtool: "source-map",
@@ -73,6 +88,9 @@ module.exports = {
     new webpack.HotModuleReplacementPlugin(),
     new HTMLWebpackPlugin({
       template: "./src/index.html"
+    }),
+    new BundleAnalyserPlugin({
+      generateStatsFile: true
     })
   ]
 }
