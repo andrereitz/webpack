@@ -3,8 +3,8 @@
   "warnings": [],
   "version": "4.14.0",
   "hash": "da49de430a2235e08aeb",
-  "time": 1993,
-  "builtAt": 1623682601490,
+  "time": 2213,
+  "builtAt": 1623682878385,
   "publicPath": "/",
   "outputPath": "/home/andrereitz/Studies/webpack/dist",
   "assetsByChunkName": {
@@ -2094,15 +2094,6 @@
               "loc": "2:17-47"
             },
             {
-              "moduleId": "./node_modules/core-js/library/fn/object/define-property.js",
-              "moduleIdentifier": "/home/andrereitz/Studies/webpack/node_modules/core-js/library/fn/object/define-property.js",
-              "module": "./node_modules/core-js/library/fn/object/define-property.js",
-              "moduleName": "./node_modules/core-js/library/fn/object/define-property.js",
-              "type": "cjs require",
-              "userRequest": "../../modules/_core",
-              "loc": "2:14-44"
-            },
-            {
               "moduleId": "./node_modules/core-js/library/fn/object/set-prototype-of.js",
               "moduleIdentifier": "/home/andrereitz/Studies/webpack/node_modules/core-js/library/fn/object/set-prototype-of.js",
               "module": "./node_modules/core-js/library/fn/object/set-prototype-of.js",
@@ -2110,6 +2101,15 @@
               "type": "cjs require",
               "userRequest": "../../modules/_core",
               "loc": "2:17-47"
+            },
+            {
+              "moduleId": "./node_modules/core-js/library/fn/object/define-property.js",
+              "moduleIdentifier": "/home/andrereitz/Studies/webpack/node_modules/core-js/library/fn/object/define-property.js",
+              "module": "./node_modules/core-js/library/fn/object/define-property.js",
+              "moduleName": "./node_modules/core-js/library/fn/object/define-property.js",
+              "type": "cjs require",
+              "userRequest": "../../modules/_core",
+              "loc": "2:14-44"
             },
             {
               "moduleId": "./node_modules/core-js/library/fn/object/create.js",
@@ -6428,15 +6428,6 @@
               "loc": "1:16-40"
             },
             {
-              "moduleId": "./node_modules/core-js/library/modules/_to-length.js",
-              "moduleIdentifier": "/home/andrereitz/Studies/webpack/node_modules/core-js/library/modules/_to-length.js",
-              "module": "./node_modules/core-js/library/modules/_to-length.js",
-              "moduleName": "./node_modules/core-js/library/modules/_to-length.js",
-              "type": "cjs require",
-              "userRequest": "./_to-integer",
-              "loc": "2:16-40"
-            },
-            {
               "moduleId": "./node_modules/core-js/library/modules/_to-absolute-index.js",
               "moduleIdentifier": "/home/andrereitz/Studies/webpack/node_modules/core-js/library/modules/_to-absolute-index.js",
               "module": "./node_modules/core-js/library/modules/_to-absolute-index.js",
@@ -6444,6 +6435,15 @@
               "type": "cjs require",
               "userRequest": "./_to-integer",
               "loc": "1:16-40"
+            },
+            {
+              "moduleId": "./node_modules/core-js/library/modules/_to-length.js",
+              "moduleIdentifier": "/home/andrereitz/Studies/webpack/node_modules/core-js/library/modules/_to-length.js",
+              "module": "./node_modules/core-js/library/modules/_to-length.js",
+              "moduleName": "./node_modules/core-js/library/modules/_to-length.js",
+              "type": "cjs require",
+              "userRequest": "./_to-integer",
+              "loc": "2:16-40"
             }
           ],
           "providedExports": null,
@@ -6530,15 +6530,6 @@
               "loc": "19:16-40"
             },
             {
-              "moduleId": "./node_modules/core-js/library/modules/es6.array.iterator.js",
-              "moduleIdentifier": "/home/andrereitz/Studies/webpack/node_modules/core-js/library/modules/es6.array.iterator.js",
-              "module": "./node_modules/core-js/library/modules/es6.array.iterator.js",
-              "moduleName": "./node_modules/core-js/library/modules/es6.array.iterator.js",
-              "type": "cjs require",
-              "userRequest": "./_to-iobject",
-              "loc": "5:16-40"
-            },
-            {
               "moduleId": "./node_modules/core-js/library/modules/_object-gopd.js",
               "moduleIdentifier": "/home/andrereitz/Studies/webpack/node_modules/core-js/library/modules/_object-gopd.js",
               "module": "./node_modules/core-js/library/modules/_object-gopd.js",
@@ -6546,6 +6537,15 @@
               "type": "cjs require",
               "userRequest": "./_to-iobject",
               "loc": "3:16-40"
+            },
+            {
+              "moduleId": "./node_modules/core-js/library/modules/es6.array.iterator.js",
+              "moduleIdentifier": "/home/andrereitz/Studies/webpack/node_modules/core-js/library/modules/es6.array.iterator.js",
+              "module": "./node_modules/core-js/library/modules/es6.array.iterator.js",
+              "moduleName": "./node_modules/core-js/library/modules/es6.array.iterator.js",
+              "type": "cjs require",
+              "userRequest": "./_to-iobject",
+              "loc": "5:16-40"
             },
             {
               "moduleId": "./node_modules/core-js/library/modules/_object-gopn-ext.js",
@@ -7188,9 +7188,9 @@
           "chunks": [
             "main"
           ],
-          "issuer": "/home/andrereitz/Studies/webpack/node_modules/core-js/library/modules/web.dom.iterable.js",
-          "issuerId": "./node_modules/core-js/library/modules/web.dom.iterable.js",
-          "issuerName": "./node_modules/core-js/library/modules/web.dom.iterable.js",
+          "issuer": "/home/andrereitz/Studies/webpack/node_modules/core-js/library/modules/_wks-ext.js",
+          "issuerId": "./node_modules/core-js/library/modules/_wks-ext.js",
+          "issuerName": "./node_modules/core-js/library/modules/_wks-ext.js",
           "issuerPath": [
             {
               "id": 1,
@@ -7233,9 +7233,9 @@
               "name": "./node_modules/core-js/library/fn/symbol/iterator.js"
             },
             {
-              "id": "./node_modules/core-js/library/modules/web.dom.iterable.js",
-              "identifier": "/home/andrereitz/Studies/webpack/node_modules/core-js/library/modules/web.dom.iterable.js",
-              "name": "./node_modules/core-js/library/modules/web.dom.iterable.js"
+              "id": "./node_modules/core-js/library/modules/_wks-ext.js",
+              "identifier": "/home/andrereitz/Studies/webpack/node_modules/core-js/library/modules/_wks-ext.js",
+              "name": "./node_modules/core-js/library/modules/_wks-ext.js"
             }
           ],
           "failed": false,
@@ -7244,15 +7244,6 @@
           "assets": [],
           "reasons": [
             {
-              "moduleId": "./node_modules/core-js/library/modules/web.dom.iterable.js",
-              "moduleIdentifier": "/home/andrereitz/Studies/webpack/node_modules/core-js/library/modules/web.dom.iterable.js",
-              "module": "./node_modules/core-js/library/modules/web.dom.iterable.js",
-              "moduleName": "./node_modules/core-js/library/modules/web.dom.iterable.js",
-              "type": "cjs require",
-              "userRequest": "./_wks",
-              "loc": "5:20-37"
-            },
-            {
               "moduleId": "./node_modules/core-js/library/modules/_wks-ext.js",
               "moduleIdentifier": "/home/andrereitz/Studies/webpack/node_modules/core-js/library/modules/_wks-ext.js",
               "module": "./node_modules/core-js/library/modules/_wks-ext.js",
@@ -7260,6 +7251,15 @@
               "type": "cjs require",
               "userRequest": "./_wks",
               "loc": "1:12-29"
+            },
+            {
+              "moduleId": "./node_modules/core-js/library/modules/web.dom.iterable.js",
+              "moduleIdentifier": "/home/andrereitz/Studies/webpack/node_modules/core-js/library/modules/web.dom.iterable.js",
+              "module": "./node_modules/core-js/library/modules/web.dom.iterable.js",
+              "moduleName": "./node_modules/core-js/library/modules/web.dom.iterable.js",
+              "type": "cjs require",
+              "userRequest": "./_wks",
+              "loc": "5:20-37"
             },
             {
               "moduleId": "./node_modules/core-js/library/modules/es6.symbol.js",
@@ -15006,15 +15006,6 @@
           "loc": "2:17-47"
         },
         {
-          "moduleId": "./node_modules/core-js/library/fn/object/define-property.js",
-          "moduleIdentifier": "/home/andrereitz/Studies/webpack/node_modules/core-js/library/fn/object/define-property.js",
-          "module": "./node_modules/core-js/library/fn/object/define-property.js",
-          "moduleName": "./node_modules/core-js/library/fn/object/define-property.js",
-          "type": "cjs require",
-          "userRequest": "../../modules/_core",
-          "loc": "2:14-44"
-        },
-        {
           "moduleId": "./node_modules/core-js/library/fn/object/set-prototype-of.js",
           "moduleIdentifier": "/home/andrereitz/Studies/webpack/node_modules/core-js/library/fn/object/set-prototype-of.js",
           "module": "./node_modules/core-js/library/fn/object/set-prototype-of.js",
@@ -15022,6 +15013,15 @@
           "type": "cjs require",
           "userRequest": "../../modules/_core",
           "loc": "2:17-47"
+        },
+        {
+          "moduleId": "./node_modules/core-js/library/fn/object/define-property.js",
+          "moduleIdentifier": "/home/andrereitz/Studies/webpack/node_modules/core-js/library/fn/object/define-property.js",
+          "module": "./node_modules/core-js/library/fn/object/define-property.js",
+          "moduleName": "./node_modules/core-js/library/fn/object/define-property.js",
+          "type": "cjs require",
+          "userRequest": "../../modules/_core",
+          "loc": "2:14-44"
         },
         {
           "moduleId": "./node_modules/core-js/library/fn/object/create.js",
@@ -19340,15 +19340,6 @@
           "loc": "1:16-40"
         },
         {
-          "moduleId": "./node_modules/core-js/library/modules/_to-length.js",
-          "moduleIdentifier": "/home/andrereitz/Studies/webpack/node_modules/core-js/library/modules/_to-length.js",
-          "module": "./node_modules/core-js/library/modules/_to-length.js",
-          "moduleName": "./node_modules/core-js/library/modules/_to-length.js",
-          "type": "cjs require",
-          "userRequest": "./_to-integer",
-          "loc": "2:16-40"
-        },
-        {
           "moduleId": "./node_modules/core-js/library/modules/_to-absolute-index.js",
           "moduleIdentifier": "/home/andrereitz/Studies/webpack/node_modules/core-js/library/modules/_to-absolute-index.js",
           "module": "./node_modules/core-js/library/modules/_to-absolute-index.js",
@@ -19356,6 +19347,15 @@
           "type": "cjs require",
           "userRequest": "./_to-integer",
           "loc": "1:16-40"
+        },
+        {
+          "moduleId": "./node_modules/core-js/library/modules/_to-length.js",
+          "moduleIdentifier": "/home/andrereitz/Studies/webpack/node_modules/core-js/library/modules/_to-length.js",
+          "module": "./node_modules/core-js/library/modules/_to-length.js",
+          "moduleName": "./node_modules/core-js/library/modules/_to-length.js",
+          "type": "cjs require",
+          "userRequest": "./_to-integer",
+          "loc": "2:16-40"
         }
       ],
       "providedExports": null,
@@ -19442,15 +19442,6 @@
           "loc": "19:16-40"
         },
         {
-          "moduleId": "./node_modules/core-js/library/modules/es6.array.iterator.js",
-          "moduleIdentifier": "/home/andrereitz/Studies/webpack/node_modules/core-js/library/modules/es6.array.iterator.js",
-          "module": "./node_modules/core-js/library/modules/es6.array.iterator.js",
-          "moduleName": "./node_modules/core-js/library/modules/es6.array.iterator.js",
-          "type": "cjs require",
-          "userRequest": "./_to-iobject",
-          "loc": "5:16-40"
-        },
-        {
           "moduleId": "./node_modules/core-js/library/modules/_object-gopd.js",
           "moduleIdentifier": "/home/andrereitz/Studies/webpack/node_modules/core-js/library/modules/_object-gopd.js",
           "module": "./node_modules/core-js/library/modules/_object-gopd.js",
@@ -19458,6 +19449,15 @@
           "type": "cjs require",
           "userRequest": "./_to-iobject",
           "loc": "3:16-40"
+        },
+        {
+          "moduleId": "./node_modules/core-js/library/modules/es6.array.iterator.js",
+          "moduleIdentifier": "/home/andrereitz/Studies/webpack/node_modules/core-js/library/modules/es6.array.iterator.js",
+          "module": "./node_modules/core-js/library/modules/es6.array.iterator.js",
+          "moduleName": "./node_modules/core-js/library/modules/es6.array.iterator.js",
+          "type": "cjs require",
+          "userRequest": "./_to-iobject",
+          "loc": "5:16-40"
         },
         {
           "moduleId": "./node_modules/core-js/library/modules/_object-gopn-ext.js",
@@ -20100,9 +20100,9 @@
       "chunks": [
         "main"
       ],
-      "issuer": "/home/andrereitz/Studies/webpack/node_modules/core-js/library/modules/web.dom.iterable.js",
-      "issuerId": "./node_modules/core-js/library/modules/web.dom.iterable.js",
-      "issuerName": "./node_modules/core-js/library/modules/web.dom.iterable.js",
+      "issuer": "/home/andrereitz/Studies/webpack/node_modules/core-js/library/modules/_wks-ext.js",
+      "issuerId": "./node_modules/core-js/library/modules/_wks-ext.js",
+      "issuerName": "./node_modules/core-js/library/modules/_wks-ext.js",
       "issuerPath": [
         {
           "id": 1,
@@ -20145,9 +20145,9 @@
           "name": "./node_modules/core-js/library/fn/symbol/iterator.js"
         },
         {
-          "id": "./node_modules/core-js/library/modules/web.dom.iterable.js",
-          "identifier": "/home/andrereitz/Studies/webpack/node_modules/core-js/library/modules/web.dom.iterable.js",
-          "name": "./node_modules/core-js/library/modules/web.dom.iterable.js"
+          "id": "./node_modules/core-js/library/modules/_wks-ext.js",
+          "identifier": "/home/andrereitz/Studies/webpack/node_modules/core-js/library/modules/_wks-ext.js",
+          "name": "./node_modules/core-js/library/modules/_wks-ext.js"
         }
       ],
       "failed": false,
@@ -20156,15 +20156,6 @@
       "assets": [],
       "reasons": [
         {
-          "moduleId": "./node_modules/core-js/library/modules/web.dom.iterable.js",
-          "moduleIdentifier": "/home/andrereitz/Studies/webpack/node_modules/core-js/library/modules/web.dom.iterable.js",
-          "module": "./node_modules/core-js/library/modules/web.dom.iterable.js",
-          "moduleName": "./node_modules/core-js/library/modules/web.dom.iterable.js",
-          "type": "cjs require",
-          "userRequest": "./_wks",
-          "loc": "5:20-37"
-        },
-        {
           "moduleId": "./node_modules/core-js/library/modules/_wks-ext.js",
           "moduleIdentifier": "/home/andrereitz/Studies/webpack/node_modules/core-js/library/modules/_wks-ext.js",
           "module": "./node_modules/core-js/library/modules/_wks-ext.js",
@@ -20172,6 +20163,15 @@
           "type": "cjs require",
           "userRequest": "./_wks",
           "loc": "1:12-29"
+        },
+        {
+          "moduleId": "./node_modules/core-js/library/modules/web.dom.iterable.js",
+          "moduleIdentifier": "/home/andrereitz/Studies/webpack/node_modules/core-js/library/modules/web.dom.iterable.js",
+          "module": "./node_modules/core-js/library/modules/web.dom.iterable.js",
+          "moduleName": "./node_modules/core-js/library/modules/web.dom.iterable.js",
+          "type": "cjs require",
+          "userRequest": "./_wks",
+          "loc": "5:20-37"
         },
         {
           "moduleId": "./node_modules/core-js/library/modules/es6.symbol.js",
