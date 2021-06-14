@@ -58,6 +58,14 @@ module.exports = {
             loader: "html-loader"
           }
         ]
+      },
+      {
+        test: /\.md$/,
+        use: [
+          {
+            loader: "markdown-with-front-matter-loader"
+          }
+        ]
       }
     ]
   },

@@ -2,7 +2,7 @@ import React from "react"
 import ReactDOM from "react-dom"
 import AppRoot from "./components/AppRoot"
 import { AppContainer } from "react-hot-loader"
-import Data from './data/bio'
+import Data from '../data/bio'
 
 function render(Component) {
   ReactDOM.render(
