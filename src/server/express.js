@@ -1,6 +1,6 @@
-import express from "express"
+const express = require("express");
 const server = express()
-import path from "path"
+const path = require("path")
 
 const isProd = process.env.NODE_ENV === "production"
 if (!isProd) {
