@@ -34,13 +34,17 @@ if (isDev) {
   console.log("Middleware enabled")
 } else {
   webpack([configProdClient, configProdServer]).run((err, stats) => {
+    console.log(stats.toString({
+      colors: true
+    }))
+    const clientStats = stats.toJson().children[0]
     const render = require("../../build/prod-server-bundle.js").default
     server.use(
       expressStaticGzip("dist", {
         enableBrotli: true
       })
     )
-    server.use(render())
+    server.use(render({ clientStats }))
   })
 }
 
