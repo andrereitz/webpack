@@ -2,11 +2,12 @@ import React from "react"
 import ReactDOM from "react-dom"
 import AppRoot from "./components/AppRoot"
 import { AppContainer } from "react-hot-loader"
+import Data from './data/bio'
 
 function render(Component) {
   ReactDOM.render(
     <AppContainer>
-      <Component />
+      <Component heading={Data.heading} content={Data.bioText} />
     </AppContainer>,
     document.getElementById("react-root")
   )

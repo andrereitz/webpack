@@ -12,9 +12,9 @@ export default class extends React.Component {
         return(
             <div className="profile">
                 <img src={ require('../images/link.jpg') } alt="" />
-                <h1>Link's Journal</h1>
+                <h1>{this.props.heading}</h1>
                 <div className="content">
-                    Profile Text
+                    {this.props.content}
                 </div>
             </div>
         )
