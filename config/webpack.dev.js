@@ -1,13 +1,19 @@
 const path = require("path")
 const webpack = require("webpack")
 const HTMLWebpackPlugin = require("html-webpack-plugin")
-const BundleAnalyserPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
-const { initial } = require("lodash")
+const BundleAnalyzerPlugin = require("webpack-bundle-analyzer")
+  .BundleAnalyzerPlugin
 
 module.exports = {
   entry: {
-    main: ["./src/main.js"],
-    other: ["./src/main.js"]
+    vendor: ["react", "react-dom"],
+    main: [
+      "react-hot-loader/patch",
+      "babel-runtime/regenerator",
+      "babel-register",
+      "webpack-hot-middleware/client?reload=true",
+      "./src/main.js"
+    ]
   },
   mode: "development",
   output: {
@@ -20,18 +26,6 @@ module.exports = {
     overlay: true,
     stats: {
       colors: true
-    }
-  },
-  optimization: {
-    splitChunks: {
-      chunks: "all",
-      cacheGroups: {
-        vendor: {
-          name: "vendor",
-          chunks: "initial",
-          minChunks: 2
-        }
-      }
     }
   },
   devtool: "source-map",
@@ -67,14 +61,6 @@ module.exports = {
         ]
       },
       {
-        test: /\.html$/,
-        use: [
-          {
-            loader: "html-loader"
-          }
-        ]
-      },
-      {
         test: /\.md$/,
         use: [
           {
@@ -86,10 +72,17 @@ module.exports = {
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
-    new HTMLWebpackPlugin({
-      template: "./src/index.html"
+    new webpack.DefinePlugin({
+      "process.env": {
+        NODE_ENV: JSON.stringify("development")
+      }
     }),
-    new BundleAnalyserPlugin({
+    // new HTMLWebpackPlugin({
+    //   template: "./src/index.ejs",
+    //   inject: true,
+    //   title: "Link's Journal"
+    // }),
+    new BundleAnalyzerPlugin({
       generateStatsFile: true
     })
   ]

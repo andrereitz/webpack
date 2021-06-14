@@ -1,17 +1,17 @@
 const path = require("path")
 const webpack = require("webpack")
-const MiniCSSExtractPlugin = require("mini-css-extract-plugin")
 const HTMLWebpackPlugin = require("html-webpack-plugin")
 const OptimizeCssAssetsPlugin = require("optimize-css-assets-webpack-plugin")
 const UglifyJSPlugin = require("uglifyjs-webpack-plugin")
 const CompressionPlugin = require("compression-webpack-plugin")
 const BrotliPlugin = require("brotli-webpack-plugin")
+const MiniCSSExtractPlugin = require("mini-css-extract-plugin")
 
 module.exports = env => {
   return {
     entry: {
-      main: ["./src/main.js"],
-      other: ["./src/main.js"]
+      vendor: ["react", "react-dom"],
+      main: ["./src/main.js"]
     },
     mode: "production",
     output: {
@@ -20,13 +20,17 @@ module.exports = env => {
       publicPath: "/"
     },
     optimization: {
+      runtimeChunk: {
+        name: "bootstrap"
+      },
       splitChunks: {
-        chunks: "all",
+        chunks: "all", // <-- The key to this
+        automaticNameDelimiter: "-",
         cacheGroups: {
           vendor: {
             name: "vendor",
-            chunks: "initial",
-            minChunks: 2
+            chunks: "all",
+            minChunks: Infinity
           }
         }
       }
@@ -44,15 +48,7 @@ module.exports = env => {
         },
         {
           test: /\.css$/,
-          use: [
-            { loader: MiniCSSExtractPlugin.loader },
-            {
-              loader: "css-loader",
-              options: {
-                minimize: true
-              }
-            }
-          ]
+          use: [MiniCSSExtractPlugin.loader, "css-loader"]
         },
         {
           test: /\.jpg$/,
@@ -62,13 +58,6 @@ module.exports = env => {
               options: {
                 name: "images/[name].[ext]"
               }
-            }
-          ]
-        },      {
-          test: /\.html$/,
-          use: [
-            {
-              loader: "html-loader"
             }
           ]
         },
@@ -95,11 +84,11 @@ module.exports = env => {
           NODE_ENV: JSON.stringify(env.NODE_ENV)
         }
       }),
-      new HTMLWebpackPlugin({
-        template: "./src/index.ejs",
-        inject: true,
-        title: "Link's Journal"
-      }),
+      // new HTMLWebpackPlugin({
+      //   template: "./src/index.ejs",
+      //   inject: true,
+      //   title: "Link's Journal"
+      // }),
       new UglifyJSPlugin(),
       new CompressionPlugin({
         algorithm: "gzip"

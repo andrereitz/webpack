@@ -2,7 +2,7 @@ import React from "react"
 import ReactDOM from "react-dom"
 import AppRoot from "./components/AppRoot"
 import { AppContainer } from "react-hot-loader"
-import Data from '../data/bio'
+import Data from "../data/bio"
 
 function render(Component) {
   ReactDOM.render(
@@ -15,7 +15,7 @@ function render(Component) {
 render(AppRoot)
 
 if (module.hot) {
-  module.hot.accept("./src/AppRoot.js", () => {
+  module.hot.accept("./components/AppRoot.js", () => {
     const NewAppRoot = require("./components/AppRoot.js").default
     render(NewAppRoot)
   })
