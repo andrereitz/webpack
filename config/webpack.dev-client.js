@@ -1,9 +1,10 @@
 const path = require("path")
 const webpack = require("webpack")
-const ExtractCssChunks = require('extract-css-chunks-webpack-plugin')
+const ExtractCssChunks = require("extract-css-chunks-webpack-plugin")
 
 module.exports = {
   name: "client",
+  mode: "development",
   entry: {
     vendor: ["react", "react-dom"],
     main: [
@@ -13,18 +14,32 @@ module.exports = {
       "./src/main.js"
     ]
   },
-  mode: "development",
   output: {
     filename: "[name]-bundle.js",
-    chunkFilename: '[name].js',
+    chunkFilename: "[name].js",
     path: path.resolve(__dirname, "../dist"),
     publicPath: "/"
   },
   devServer: {
     contentBase: "dist",
     overlay: true,
+    hot: true,
     stats: {
       colors: true
+    }
+  },
+  optimization: {
+    runtimeChunk: {
+      name: "bootstrap"
+    },
+    splitChunks: {
+      chunks: "initial",
+      cacheGroups: {
+        vendors: {
+          test: /[\\/]node_modules[\\/]/,
+          name: "vendor"
+        }
+      }
     }
   },
   devtool: "source-map",
@@ -42,37 +57,19 @@ module.exports = {
       {
         test: /\.css$/,
         use: [
+          { loader: ExtractCssChunks.loader },
           {
-            loader: ExtractCssChunks.loader
-          },
-          { loader: "css-loader" }
+            loader: "css-loader"
+          }
         ]
       },
       {
-        test: /\.jpg$/,
+        test: /\.(jpg|png|gif)$/,
         use: [
           {
             loader: "file-loader",
             options: {
               name: "images/[name].[ext]"
-            }
-          }
-        ]
-      },
-      {
-        test: /\.html$/,
-        use: [
-          {
-            loader: "file-loader",
-            options: {
-              name: "[name].[ext]"
-            }
-          },
-          { loader: "extract-loader" },
-          {
-            loader: "html-loader",
-            options: {
-              attrs: ["img:src"]
             }
           }
         ]

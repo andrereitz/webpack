@@ -3,13 +3,16 @@ import { renderToString } from "react-dom/server"
 import { StaticRouter } from "react-router"
 import Routes from "../components/Routes"
 
-import { flushChunkNames } from 'react-universal-component/server'
-import flushChunks from 'webpack-flush-chunks'
+import { flushChunkNames } from "react-universal-component/server"
+import flushChunks from "webpack-flush-chunks"
 
-export default ({clientStats}) => (req, res) => {
-
+export default ({ clientStats }) => (req, res) => {
+  const context = {
+    site: req.hostname.split('.')[0]
+  }
+  
   const app = renderToString(
-    <StaticRouter location={req.originalUrl} context={{}}>
+    <StaticRouter location={req.originalUrl} context={context}>
       <Routes />
     </StaticRouter>
   )
@@ -18,6 +21,7 @@ export default ({clientStats}) => (req, res) => {
     chunkNames: flushChunkNames()
   })
 
+
   res.send(`
     <html>
       <head>
@@ -25,8 +29,8 @@ export default ({clientStats}) => (req, res) => {
       </head>
       <body>
         <div id="react-root">${app}</div>
-        ${js}
         ${cssHash}
+        ${js}
       </body>
     </html>
   `)

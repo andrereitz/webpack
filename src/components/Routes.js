@@ -1,6 +1,8 @@
 import React from "react"
-import { Route, Link, Switch } from "react-router-dom"
-import universal from 'react-universal-component'
+import { Route, Link } from "react-router-dom"
+import universal from "react-universal-component"
+import { Switch } from "react-router"
+import "../css/nav.css"
 
 const UniversalComponent = universal(props => import(`./${props.page}`))
 
@@ -12,16 +14,18 @@ export default () => (
       <Link to="/article">Article</Link>
     </div>
     <Switch>
-        <Route exact path="/">
-            <UniversalComponent page='Gallery' />
-        </Route>
-        <Route path="/about">
-            <UniversalComponent page='About' />
-        </Route>
-        <Route path="/article">
-            <UniversalComponent page='Article' />
-        </Route>
+      <Route exact path="/">
+        <UniversalComponent page="Gallery" />
+      </Route>
 
+      <Route path="/about" render={({ staticContext }) => {
+        const site = staticContext ? staticContext.site : location.hostname.split('.')[0]
+        return <UniversalComponent page="About" site={site} />
+      }} />
+
+      <Route path="/article">
+        <UniversalComponent page="Article" />
+      </Route>
     </Switch>
   </div>
 )

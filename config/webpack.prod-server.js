@@ -1,16 +1,15 @@
 const path = require("path")
 const webpack = require("webpack")
-const externals = require("./node-externals")
+var externals = require("./node-externals")
 
 module.exports = {
   name: "server",
   target: "node",
-  externals,
+  externals: externals,
   entry: "./src/server/render.js",
   mode: "production",
   output: {
     filename: "prod-server-bundle.js",
-    chunkFilename: "[name].js",
     path: path.resolve(__dirname, "../build"),
     libraryTarget: "commonjs2"
   },
@@ -27,7 +26,11 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        use: "css-loader"
+        use: [
+          {
+            loader: "css-loader"
+          }
+        ]
       },
       {
         test: /\.jpg$/,

@@ -1,4 +1,3 @@
-
 const path = require("path")
 const webpack = require("webpack")
 const externals = require("./node-externals")
@@ -28,7 +27,12 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        use: "css-loader"
+        use: {
+          loader: "css-loader",
+          options: {
+            minimize: true
+          }
+        }
       },
       {
         test: /\.jpg$/,
