@@ -29,7 +29,7 @@ class Article extends React.Component {
           <h1>{this.props.title}</h1>
           <div
             className="content"
-            dangerouslySetInnerHTML={{ __html: this.props.content.post }}
+            dangerouslySetInnerHTML={{ __html: this.props.__content }}
           />
         </div>
       )
@@ -39,8 +39,6 @@ class Article extends React.Component {
   }
 }
 
-export default connect(state => {
-  return {
-    content: state.content
-  }
-})(Article)
+export default connect(state => ({
+  ...state.content
+}))(Article)
