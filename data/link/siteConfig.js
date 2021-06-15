@@ -1,3 +1,3 @@
 module.exports = {
-    aboutImage: 'link.jpg'
+  aboutImage: "link.jpg"
 }

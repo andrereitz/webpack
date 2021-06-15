@@ -1,3 +1,30 @@
-h1 {
-  color: blue;
+.article{
+  margin: 200ox auto;
+}
+
+.article h1{
+  color: white;
+  font-weight: 100;
+  font-size: 4em;
+  text-align: right;
+  max-width: 820px;
+  padding: 0 40px 0 400px;
+  text-shadow: 0 0 20px black;
+  margin: 0 auto -13px auto;
+}
+
+.article .poster{
+  position: fixed;
+  top: 0;
+  height: 500px;
+  width: 100%;
+  z-index: -1;
+  border-bottom: 4px solid white;
+  background-position: center 0;
+}
+
+@media (max-width: 768px){
+  .article h1 {
+    padding: 0;
+  }
 }
