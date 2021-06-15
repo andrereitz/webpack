@@ -11,5 +11,11 @@
     ],
     "babel-preset-react"
   ],
-  "plugins": ["transform-runtime", "react-hot-loader/babel", "syntax-dynamic-import", "universal-import"]
+  "plugins": [
+    "transform-runtime", 
+    "react-hot-loader/babel", 
+    "syntax-dynamic-import", 
+    "universal-import",
+    "transform-object-rest-spread"
+  ]
 }
