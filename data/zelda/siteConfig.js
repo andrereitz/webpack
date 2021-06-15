@@ -1,4 +1,4 @@
 module.exports = {
-  aboutImage: "zelda.jpg",
+  aboutImage: "zelda.png",
   aboutText: "Hello from Zelda"
 }

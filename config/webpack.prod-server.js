@@ -1,13 +1,13 @@
 const path = require("path")
 const webpack = require("webpack")
-var externals = require("./node-externals")
+const externals = require("./node-externals")
 
 module.exports = {
   name: "server",
   target: "node",
-  externals: externals,
-  entry: "./src/server/render.js",
   mode: "production",
+  externals,
+  entry: "./src/server/render.js",
   output: {
     filename: "prod-server-bundle.js",
     path: path.resolve(__dirname, "../build"),
@@ -26,14 +26,10 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        use: [
-          {
-            loader: "css-loader"
-          }
-        ]
+        use: "css-loader"
       },
       {
-        test: /\.jpg$/,
+        test: /\.(jpg|png|gif)$/,
         use: [
           {
             loader: "file-loader",
@@ -55,9 +51,6 @@ module.exports = {
     ]
   },
   plugins: [
-    new webpack.optimize.LimitChunkCountPlugin({
-      maxChunks: 1
-    }),
     new webpack.DefinePlugin({
       "process.env": {
         NODE_ENV: JSON.stringify("production")

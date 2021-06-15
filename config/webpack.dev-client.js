@@ -1,11 +1,9 @@
 const path = require("path")
 const webpack = require("webpack")
 const ExtractCssChunks = require("extract-css-chunks-webpack-plugin")
-const MiniCSSExtractPlugin = require('mini-css-extract-plugin')
 
 module.exports = {
   name: "client",
-  mode: "development",
   entry: {
     vendor: ["react", "react-dom"],
     main: [
@@ -15,6 +13,7 @@ module.exports = {
       "./src/main.js"
     ]
   },
+  mode: "development",
   output: {
     filename: "[name]-bundle.js",
     chunkFilename: "[name].js",
@@ -27,20 +26,6 @@ module.exports = {
     hot: true,
     stats: {
       colors: true
-    }
-  },
-  optimization: {
-    runtimeChunk: {
-      name: "bootstrap"
-    },
-    splitChunks: {
-      chunks: "initial",
-      cacheGroups: {
-        vendors: {
-          test: /[\\/]node_modules[\\/]/,
-          name: "vendor"
-        }
-      }
     }
   },
   devtool: "source-map",
@@ -57,13 +42,12 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        // use: [
-        //   { loader: ExtractCssChunks.loader },
-        //   {
-        //     loader: "css-loader"
-        //   }
-        // ]
-        use: [MiniCSSExtractPlugin.loader, 'css-loader']
+        use: [
+          { loader: ExtractCssChunks.loader },
+          {
+            loader: "css-loader"
+          }
+        ]
       },
       {
         test: /\.(jpg|png|gif)$/,
@@ -87,7 +71,6 @@ module.exports = {
     ]
   },
   plugins: [
-    new MiniCSSExtractPlugin(),
     new ExtractCssChunks({ hot: true }),
     new webpack.DefinePlugin({
       "process.env": {

@@ -2,9 +2,11 @@ import React from "react"
 import ReactDOM from "react-dom"
 import AppRoot from "./components/AppRoot"
 import { AppContainer } from "react-hot-loader"
-import { Provider } from 'react-redux'
-import store from './store'
-import { actionTest } from './actions'
+import { Provider } from "react-redux"
+import configureStore from "./store"
+import { fetchArticle } from "./actions"
+
+const store = configureStore({})
 
 function render(Component) {
   ReactDOM.hydrate(
@@ -16,9 +18,6 @@ function render(Component) {
     document.getElementById("react-root")
   )
 }
-
-store.dispatch(actionTest('New Text'))
-
 render(AppRoot)
 
 if (module.hot) {

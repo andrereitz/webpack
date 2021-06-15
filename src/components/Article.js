@@ -1,41 +1,46 @@
 import React from "react"
 import "../css/Article.css"
-import NotFound from './NotFound'
-import { connect } from 'react-redux'
+import NotFound from "./NotFound"
+import { connect } from "react-redux"
+import { fetchArticle } from "../actions"
 
-const Article = (props) => {
-  const siteConfig = require(`../../data/${props.site}/siteConfig`)
-  
-  import(`../css/${props.site}/theme.css`);
+class Article extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = {}
+  }
 
-  try {
-    // const MarkdownData = require(`../../data/${props.site}/${props.match.params.slug}.md`)
-  
-  
-    // const posterStyle = {
-    //   backgroundImage: `url(${MarkdownData.posterImage})`
-    // }
-  
-    return(
-      <div>
-        <div className="article">
-          <div className='poster' style={posterStyle}></div>
-          <h1>{props.title}</h1>
-          <div
-            className="content"
-            dangerouslySetInnerHTML={{ __html: props.__content }}
-          />
-        </div>
-      </div>
+  componentDidMount() {
+    this.props.dispatch(
+      fetchArticle(this.props.site, this.props.match.params.slug)
     )
   }
-  catch (err){
-    return <NotFound />
+
+  render() {
+    try {
+      const billboardStyle = {
+        backgroundImage: `url(${this.props.posterImage})`
+      }
+
+      import(`../css/${this.props.site}/theme.css`)
+      return (
+        <div className="Article">
+          <div className="billboard" style={billboardStyle} />
+          <h1>{this.props.title}</h1>
+          <div
+            className="content"
+            dangerouslySetInnerHTML={{ __html: this.props.content.post }}
+          />
+        </div>
+      )
+    } catch (error) {
+      return <NotFound />
+    }
   }
 }
 
-
-export default connect(state => ({
-  title: state.text,
-  __content: state.text
-}))(Article)
+export default connect(state => {
+  return {
+    content: state.content
+  }
+})(Article)

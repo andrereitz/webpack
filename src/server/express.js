@@ -1,5 +1,5 @@
 import express from "express"
-const server = express()
+let server = express()
 import path from "path"
 const expressStaticGzip = require("express-static-gzip")
 import webpack from "webpack"
@@ -16,16 +16,18 @@ const PORT = process.env.PORT || 8080
 let isBuilt = false
 
 const done = () => {
-  !isBuilt &&
-    server.listen(PORT, () => {
-      isBuilt = true
-      console.log(
-        `Server listening on http://localhost:${PORT} in ${
-          process.env.NODE_ENV
-        }`
-      )
-    })
+  if (isBuilt) return
+  server.listen(PORT, () => {
+    isBuilt = true
+    console.log(
+      `Server listening on http://*.local:${PORT} in ${process.env.NODE_ENV}`
+    )
+  })
 }
+
+server.get("/api/articles/:post", (req, res) => {
+  res.json(req.params)
+})
 
 if (isDev) {
   const compiler = webpack([configDevClient, configDevServer])
@@ -52,6 +54,11 @@ if (isDev) {
   webpack([configProdClient, configProdServer]).run((err, stats) => {
     const clientStats = stats.toJson().children[0]
     const render = require("../../build/prod-server-bundle.js").default
+    console.log(
+      stats.toString({
+        colors: true
+      })
+    )
     server.use(
       expressStaticGzip("dist", {
         enableBrotli: true
