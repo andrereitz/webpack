@@ -9,11 +9,11 @@ const ExtractCssChunks = require("extract-css-chunks-webpack-plugin")
 
 module.exports = {
   name: "client",
+  mode: "production",
   entry: {
-    vendor: ["react", "react-dom"],
+    vendor: ["react", "lodash"],
     main: ["./src/main.js"]
   },
-  mode: "production",
   output: {
     filename: "[name]-bundle.js",
     chunkFilename: "[name].js",
@@ -25,7 +25,7 @@ module.exports = {
       name: "bootstrap"
     },
     splitChunks: {
-      chunks: "initial",
+      chunks: "initial", // <-- The key to this
       cacheGroups: {
         vendors: {
           test: /[\\/]node_modules[\\/]/,
@@ -47,15 +47,10 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        use: [
-          { loader: ExtractCssChunks.loader },
-          {
-            loader: "css-loader"
-          }
-        ]
+        use: [ExtractCssChunks.loader, "css-loader"]
       },
       {
-        test: /\.(jpg|gif|png)$/,
+        test: /\.(jpg|png|gif)$/,
         use: [
           {
             loader: "url-loader",

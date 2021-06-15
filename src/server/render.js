@@ -16,32 +16,51 @@ export default ({ clientStats }) => (req, res) => {
   const context = { site }
 
   const store = configureStore()
-  store.dispatch(fetchArticle(site, slug))
 
-  const app = renderToString(
-    <Provider store={store}>
-      <StaticRouter location={req.originalUrl} context={context}>
-        <Routes />
-      </StaticRouter>
-    </Provider>
-  )
+  const loadArticle = (site, slug) => {
+    return store.dispatch(fetchArticle(site, slug))
+  }
 
-  const names = flushChunkNames().concat([`css/${site}-theme-css`])
+  const app = () =>
+    renderToString(
+      <Provider store={store}>
+        <StaticRouter location={req.originalUrl} context={context}>
+          <Routes />
+        </StaticRouter>
+      </Provider>
+    )
 
-  const { js, styles, cssHash } = flushChunks(clientStats, {
-    chunkNames: names
-  })
+  const template = () => {
+    const appOutput = app()
+    const names = flushChunkNames().concat([`css/${site}-theme-css`])
 
-  res.send(`
-    <html>
-      <head>
-        ${styles}
-      </head>
-      <body>
-        <div id="react-root">${app}</div>
-        ${js}
-        ${cssHash}
-      </body>
-    </html>
-  `)
+    const { js, styles, cssHash } = flushChunks(clientStats, {
+      chunkNames: names
+    })
+
+    return `
+      <html>
+        <head>
+          ${styles}
+        </head>
+        <body>
+          <div id="react-root">${appOutput}</div>
+          ${js}
+          <script>
+            window.INITIAL_STATE = ${JSON.stringify(store.getState())}
+          </script>
+          ${cssHash}
+        </body>
+      </html>
+    `
+  }
+
+  if (req.path.match(/^\/article\//)) {
+    const promise = loadArticle(site, slug)
+    promise.then(_ => {
+      res.send(template())
+    })
+  } else {
+    res.send(template())
+  }
 }

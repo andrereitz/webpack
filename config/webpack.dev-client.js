@@ -4,6 +4,7 @@ const ExtractCssChunks = require("extract-css-chunks-webpack-plugin")
 
 module.exports = {
   name: "client",
+  mode: "development",
   entry: {
     vendor: ["react", "react-dom"],
     main: [
@@ -13,7 +14,6 @@ module.exports = {
       "./src/main.js"
     ]
   },
-  mode: "development",
   output: {
     filename: "[name]-bundle.js",
     chunkFilename: "[name].js",
@@ -23,9 +23,22 @@ module.exports = {
   devServer: {
     contentBase: "dist",
     overlay: true,
-    hot: true,
     stats: {
       colors: true
+    }
+  },
+  optimization: {
+    runtimeChunk: {
+      name: "bootstrap"
+    },
+    splitChunks: {
+      chunks: "initial", // <-- The key to this
+      cacheGroups: {
+        vendors: {
+          test: /[\\/]node_modules[\\/]/,
+          name: "vendor"
+        }
+      }
     }
   },
   devtool: "source-map",
@@ -42,12 +55,7 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        use: [
-          { loader: ExtractCssChunks.loader },
-          {
-            loader: "css-loader"
-          }
-        ]
+        use: [ExtractCssChunks.loader, "css-loader"]
       },
       {
         test: /\.(jpg|png|gif)$/,
