@@ -7,9 +7,12 @@ import { flushChunkNames } from "react-universal-component/server"
 import flushChunks from "webpack-flush-chunks"
 
 export default ({ clientStats }) => (req, res) => {
+  const site = req.hostname.split('.')[0];
   const context = {
-    site: req.hostname.split('.')[0]
+    site
   }
+
+  const names = flushChunkNames().concat([`css/${site}-theme-css`]);
   
   const app = renderToString(
     <StaticRouter location={req.originalUrl} context={context}>
@@ -17,8 +20,9 @@ export default ({ clientStats }) => (req, res) => {
     </StaticRouter>
   )
 
+
   const { js, styles, cssHash } = flushChunks(clientStats, {
-    chunkNames: flushChunkNames()
+    chunkNames: names
   })
 
 

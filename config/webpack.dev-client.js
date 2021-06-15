@@ -1,6 +1,7 @@
 const path = require("path")
 const webpack = require("webpack")
 const ExtractCssChunks = require("extract-css-chunks-webpack-plugin")
+const MiniCSSExtractPlugin = require('mini-css-extract-plugin')
 
 module.exports = {
   name: "client",
@@ -56,12 +57,13 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        use: [
-          { loader: ExtractCssChunks.loader },
-          {
-            loader: "css-loader"
-          }
-        ]
+        // use: [
+        //   { loader: ExtractCssChunks.loader },
+        //   {
+        //     loader: "css-loader"
+        //   }
+        // ]
+        use: [MiniCSSExtractPlugin.loader, 'css-loader']
       },
       {
         test: /\.(jpg|png|gif)$/,
@@ -85,6 +87,7 @@ module.exports = {
     ]
   },
   plugins: [
+    new MiniCSSExtractPlugin(),
     new ExtractCssChunks({ hot: true }),
     new webpack.DefinePlugin({
       "process.env": {
